@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
@@ -47,16 +46,23 @@ void main() {
                   return ListView(
                     children: store.state.todos
                         .map(
-                          (e) => Row(
-                            children: [
-                              Checkbox(
-                                value: e.done,
-                                onChanged: (b) {
-                                  store.dispatch(ToggleTodo(e));
-                                },
+                          (e) => ListTile(
+                            leading: Checkbox(
+                              value: e.done,
+                              onChanged: (b) {
+                                store.dispatch(ToggleTodo(e));
+                              },
+                            ),
+                            title: Text(e.text),
+                            trailing: IconButton(
+                              icon: Icon(
+                                Icons.delete,
+                                color: Colors.red,
                               ),
-                              Text(e.text),
-                            ],
+                              onPressed: () {
+                                store.dispatch(RemoveTodo(e));
+                              },
+                            ),
                           ),
                         )
                         .toList(),
