@@ -1,0 +1,4 @@
+- store bao gồm 1 reducer và 1 state
+- có thể combine nhiều reducers thành một
+    - dạng cha-con:  reducer gọi các reducers tương ứng cho từng nhánh con  (state, a) => State(reducerX(state.x, a),  reducerY(state.y, a))
+    - dạng anh-em: reducer gọi các reducers liên tiếp cho một state duy nhất  (state, a) = reducer1(reducer2(state, a), a);
