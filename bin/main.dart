@@ -13,25 +13,32 @@ int reducer(int state, dynamic action) {
 void main() async {
   var store = Store<int>(
     reducer,
+    syncStream: true,
+    distinct: true,
     initialState: 0,
     middleware: [
       (s, a, n) async {
         print('begin1');
+        await Future.delayed(Duration(milliseconds: 500));
         await n(a);
-        print('end2');
+        await Future.delayed(Duration(milliseconds: 500));
+        print('end1');
       },
-      (s, a, n) async {
+      (s, a, n) {
         print('begin2');
-        await Future.delayed(Duration(seconds: 3));
-        await n(a);
-        await n(a);
+        n(a);
         print('end2');
       }
     ],
   );
 
-  store.dispatch('INC');
-  await store.dispatch('INC');
+  store.onChange.listen((event) {
+    print(event);
+  });
 
-  print(store.state);
+  store.onChange.listen((event) {
+    print('$event again');
+  });
+
+  store.dispatch('INC');
 }
