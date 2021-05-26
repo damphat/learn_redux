@@ -21,5 +21,8 @@
 - sự thay đổi dựa vào operator `==` của state (lưu ý đó là toán tử có thể override)
 - mặc định distint = false
 
-## sync
-gán sync = true, event được sinh ra ngay trong cycle. Mặc định sync = false, event sẽ được tạo ra ở cycle sau
+## syncStream
+gán syncStream = true, event được sinh ra ngay trong cycle. Mặc định syncStream = false, event sẽ được tạo ra ở cycle sau
+
+## listen
+- store.onChange là broadcast stream
