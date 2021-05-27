@@ -1,4 +1,3 @@
-import 'counter.dart' as counter;
-import 'todo_app/todo_app.dart' as todo_app;
+import 'chat_app/main.dart' as chat_app;
 
-void main() => todo_app.main();
+void main() => chat_app.main();
