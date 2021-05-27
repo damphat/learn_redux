@@ -1,20 +1,43 @@
-class ChatState {
-  ChatState({required this.list, required this.input});
+class ChatAppState {
+  ChatAppState({required this.list, required this.input, required this.pos});
   List<ChatItemState> list = [];
   String input = "";
+  double? pos;
 
-  ChatState add(ChatItemState item) {
-    return ChatState(
+  ChatAppState add(ChatItemState item) {
+    return ChatAppState(
       list: [...this.list, item],
       input: this.input,
+      pos: this.pos,
     );
   }
 
-  ChatState remove(ChatItemState item) {
-    return ChatState(
+  ChatAppState remove(ChatItemState item) {
+    return ChatAppState(
       list: list.where((e) => e != item).toList(),
       input: input,
+      pos: this.pos,
     );
+  }
+
+  ChatAppState setInput(String input) {
+    return ChatAppState(
+      list: list,
+      input: input,
+      pos: this.pos,
+    );
+  }
+
+  ChatAppState submit() {
+    return ChatAppState(
+      list: [...this.list, ChatItemState(text: this.input)],
+      input: "",
+      pos: this.pos,
+    );
+  }
+
+  ChatAppState setPos(double? pos) {
+    return ChatAppState(list: list, input: input, pos: pos);
   }
 }
 

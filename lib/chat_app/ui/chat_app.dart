@@ -10,20 +10,21 @@ import 'chat_list.dart';
 class ChatApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return StoreProvider<ChatState>(
+    return StoreProvider<ChatAppState>(
       store: Store(
         (state, action) {
-          if (action is ChatState) {
+          if (action is ChatAppState) {
             return action;
           }
 
           return state;
         },
-        initialState: ChatState(
+        initialState: ChatAppState(
           list: [
             ChatItemState(text: 'hello'),
           ],
           input: '',
+          pos: 10,
         ),
       ),
       child: MaterialApp(

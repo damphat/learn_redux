@@ -8,7 +8,7 @@ class ChatItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StoreBuilder<ChatState>(
+    return StoreBuilder<ChatAppState>(
       builder: (context, store) => ListTile(
         title: Text(state.text),
         trailing: IconButton(
